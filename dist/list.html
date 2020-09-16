@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../dist/css/list.min.css">
+    <script src="../dist/js/jquery-1.12.4.min.js"></script>
+    <script src="../dist/js/index.min.js"></script>
+    <script src="../dist/js/public.min.js"></script>
+    <script src="../dist/js/jquery.cookie.min.js"></script>
+    <script>
+       window.onload = function(){
+            $('.r_l a:nth-child(1)').click(()=>{
+                $('.login').css('display','block');
+                $('.register').css('display','none');
+                $('.login').css('top','80px');
+                $('.nav').css('top','477px');
+            })
+            $('.r_l a:nth-child(2)').click(()=>{
+                $('.login').css('display','none');
+                $('.register').css('display','block');
+                $('.register').css('top','80px');
+                $('.nav').css('top','477px');
+            })
+            $('.cart a:nth-child(1)').click(()=>{
+                $('.login').css('display','none');
+                $('.register').css('display','none');
+            })
+            $('.nav').click(()=>{
+                location.href = 'list.html';
+            })
+            //register
+        $('#sub').click(function(){
+            let uname = $('#reg_num').val();
+            let  upwd = $('#reg_pass').val();
+            let cookie_str = $.cookie('users') ? $.cookie('users') : '';
+            let cookie_obj = $toObj(cookie_str);
+            $('.error1').css('display','none');
+            $('.error2').css('display','none');
+            $('.error3').css('display','none');
+            if(uname in cookie_obj){
+                // alert('用户名已存在！');
+                $('.error3').css('display','block');
+                $('#reg_num').css({ 
+                    borderColor :'red',
+                    // color : '#d50424'
+                })
+                return;
+            }else{
+                $('.error3').css('display','none');
+                $('#reg_num').css({ 
+                    borderColor :'#999',
+                    // color : '#d50424'
+                })
+            }
+            cookie_obj[uname] = upwd ;
+            $.cookie('users',JSON.stringify(cookie_obj),{expires : 7,path : '/'});
+            alert('注册成功！');
+            console.log(cookie_obj);
+        })
+
+        $('#reg_num').blur(function(){
+            let uname = $('#reg_num').val();
+            let  upwd = $('#reg_pass').val();
+            let cookie_str = $.cookie('users') ? $.cookie('users') : '';
+            let cookie_obj = $toObj(cookie_str);
+            if(uname in cookie_obj){
+                // alert('用户名已存在！');
+                $('.error3').css('display','block');
+                $('#reg_num').css({ 
+                    borderColor :'red',
+                    // color : '#d50424'
+                })
+                return;
+            }else{
+                $('.error3').css('display','none');
+                $('#reg_num').css({ 
+                    borderColor :'#999',
+                    // color : '#d50424'
+                })
+            }
+        })
+
+        $('#reg_num').blur(function(){
+            let re =  /^(13|14|15|17|18|19)[0-9]{9}$/ ;
+            let str = $('#reg_num').val();
+            if(re.test(str)){
+                $('.error1').css('display','none');
+                $('.error2').css('display','none');
+                // $('.error3').css('display','none');
+            }else if(str == ''){
+                $('.error2').css('display','block');
+                $('.error1').css('display','none');
+                $('.error3').css('display','none');
+            }else{
+                $('.error1').css('display','block');
+                $('.error2').css('display','none');
+                $('.error3').css('display','none');
+            }
+        })
+
+        $('#reg_pass').blur(function(){
+            let re =  /^.*(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*[.!@#$%^&*?])\w{8,12}/ ;
+            let str = $('#reg_pass').val();
+            if(re.test(str)){
+                $('.error4').css('display','none');
+                $('.error5').css('display','none');
+                $('.error6').css('display','none');
+            }else if(str == ''){
+                $('.error5').css('display','block');
+                $('.error4').css('display','none');
+                $('.error6').css('display','none');
+            }else{
+                if(str.length >= 8 && str.length <= 12){
+                    $('.error4').css('display','none');
+                    $('.error5').css('display','none');
+                    $('.error6').css('display','block');
+                }else{
+                    $('.error6').css('display','none');
+                    $('.error4').css('display','block');
+                    $('.error5').css('display','none');
+                }
+            }
+        })
+        //login
+        $('#go').click(function(){
+            let uname = $('#mob').val();
+            let upwd = $('#pas').val();
+            let cookie_str = $.cookie('users') ? $.cookie('users') : '';
+            let cookie_obj = $toObj(cookie_str);
+            if(uname in cookie_obj){
+                if(upwd === cookie_obj[uname]){
+                    alert('登陆成功！');
+                    // location.href = 'product.html';
+                }else{
+                    alert('密码错误！');
+                }
+            }else{
+                alert('用户不存在！');
+            }
+        })
+        // $('#go').click(function(){
+        //     location.href = 'register_jk.html';
+        // })
+
+        $('#mob').blur(function(){
+            let str = $('#mob').val();
+            if(str == ''){
+                $('#mob').css({ 
+                    borderColor :'red',
+                    // color : '#d50424'
+                })
+            }else{
+                $('#mob').css({ 
+                    borderColor :'#999',
+                    // color : '#d50424'
+                })
+            }
+        })
+        $('#pas').blur(function(){
+            let str = $('#pas').val();
+            if(str == ''){
+                $('#pas').css({ 
+                    borderColor :'red',
+                    // color : '#d50424'
+                })
+            }else{
+                $('#pas').css({ 
+                    borderColor :'#999',
+                    // color : '#d50424'
+                })
+            }
+        })
+        $('#valcode').blur(function(){
+            let str = $('#valcode').val();
+            if(str == ''){
+                $('#valcode').css({ 
+                    borderColor :'red',
+                    // color : '#d50424'
+                })
+            }else{
+                $('#valcode').css({ 
+                    borderColor :'#999',
+                    // color : '#d50424'
+                })
+            }
+        })
+    }
+    </script>
+</head>
+<body>
+<!-- header -->
+    <div id="header">
+        <div class="header-content">
+            <a href="index.html">
+                <img src="img/logo.png" class="logo" alt="">
+            </a>
+            <div class="question">
+                <a href="#"></a>
+            </div>
+            <div class="max">
+                <a href="#"></a>
+            </div>
+            <div class="mas">
+                <a href="#"></a>
+            </div>
+            <div class="cart">
+                <a href="cart.html">购物车</a>
+                <a href="#" class="cart_num">0</a>
+            </div>
+            <div class="r_l">
+                <a href="#">登录&nbsp;/</a><a href="#">注册</a>
+                <a href="#"></a>
+            </div>
+        </div>
+    </div>
+
+<!-- register -->
+<div class="register">
+    <div class="tri"></div>
+    <div class="registration">
+        <div class="register-box">
+            <ul>
+                <li>手机号码 <b>*</b>
+                    <div class="labelbox">
+                        <input type="text" id="reg_num" class="reg_t" placeholder="135xxxx3333"> 
+                    </div>
+                    <span class="error1">请输入11位有效中国手机号码！</span>
+                    <span class="error2">请输入手机号码！</span>
+                    <span class="error3">抱歉，此手机号码已被使用！</span>
+                </li>
+                <li>邮箱 <b>*</b>
+                    <div class="labelbox">
+                        <input type="text" id="reg_email" class="reg_t" placeholder="example@converse.com"> 
+                    </div>
+                    <span class="error">请输入有效的电子邮箱地址！</span>
+                </li>
+                <li>性别 <b>*</b>
+                    <div class="labelbox">
+                        <div class="sex-man sex_c">
+                            <a href="#"></a> &nbsp;男的
+                        </div>
+                        <div class="sex-wom sex_c">
+                            <a href="#"></a> &nbsp;女的
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="register-box">
+            <ul>
+                <li>输入密码 <b>*</b>
+                    <div class="labelbox">
+                        <input type="password" id="reg_pass" class="reg_t" placeholder="密码至少为8位字符"> 
+                    </div>
+                    <span class="error">密码要有数字，大小写字母，特殊字符混合！</span>
+                    <span class="error4">密码为8-12位字符！</span>
+                    <span class="error5">请输入密码！</span>
+                    <span class="error6">密码要有数字，大小写字母，特殊字符混合！</span>
+                </li>
+                <li>确认密码 <b>*</b>
+                    <div class="labelbox">
+                        <input type="password" class="reg_t" placeholder="请再次输入密码"> 
+                    </div>
+                </li>
+                <li>生日（年-月-日） <b>*</b>
+                    <div class="labelbox">
+                        <div class="year birth">
+                            <span>2020</span>
+                            <a href="#"></a>
+                        </div>
+                        <div class="month birth">
+                            <span>1</span>
+                            <a href="#"></a>
+                        </div>
+                        <div class="date birth">
+                            <span>1</span>
+                            <a href="#"></a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="register-box">
+            <ul>
+                <li>验证码 <b>*</b>
+                    <div class="labelbox">
+                        <input type="password" id="validateCode-reg" class="reg_t" placeholder="请输入验证码"> 
+                        <div class="validateCode">
+                            <a href="#"><img src="img/textpass2.jpg" alt=""></a>
+                        </div>
+                    </div>
+                    <div class="changeverify">
+                        <a href="#">换一张</a>
+                    </div>
+                </li>
+                <li>短信验证码 <b>*</b>
+                    <div class="labelbox">
+                        <input type="password" id="validateMobile-reg" class="reg_t" placeholder=""> 
+                        <div class="validateCode">
+                            <div class="send-mobile"><h5>发送短信验证码</h5></div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="reg-warn">
+                        <a href="#"></a> &nbsp;一旦创建账户，即表明您同意匡威更新的
+                        <a href="#">隐私政策</a>和
+                        <a href="#">使用规则</a>
+                    </div>
+                    <div class="reg_btn" id="sub">
+                        注册帐号
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- login -->
+<div class="login">
+    <div class="tri"></div>
+    <div class="registration log">
+        <div class="log-con">
+            <div class="log-create">
+                <span>还未注册?</span>
+                <div class="reg_btne">
+                    注册账号
+                    <a href="#"></a>
+                </div>
+            </div>
+            <div class="log-with">
+            </div>
+            <div class="log-box">
+                <span>已经成为会员?</span>
+                <div class="email-mobile">
+                    <input type="text" id="mob" placeholder="邮箱/手机">
+                    <!-- <span class="error"></span> -->
+                </div>
+                <div class="email-mobile">
+                    <input type="password" id="pas" placeholder="账户密码">
+                    <!-- <span class="error"></span> -->
+                </div>
+                <li>
+                    <div class="labelbox">
+                        <input type="password"  class="reg_t" id="valcode" placeholder="请输入验证码"> 
+                        <div class="validateCode">
+                            <a href="#"><img src="img/textpass2.jpg" alt=""></a>
+                        </div>
+                    </div>
+                    <div class="changeverify">
+                        <a href="#">换一张</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="reg-warn">
+                        <a href="#"></a> &nbsp;一旦登录，即表明您同意匡威更新的
+                        <a href="#">隐私政策</a>和
+                        <a href="#">使用规则</a>
+                    </div>
+                    <div class="reg_btn" id="go">
+                        登录
+                    </div>
+                    <div class="reg-warn">
+                        <a href="#"></a> &nbsp;记住登录名
+                        <a href="#">忘记密码?</a>
+                    </div>
+                </li>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- nav -->
+    <div class="nav">
+        <ul class="nav-list">
+            <li><a href="#"><span>男的</span></a><i></i></li>
+            <li><a href="#"><span>女的</span></a><i></i></li>
+            <li><a href="#"><span>儿童</span></a><i></i></li>
+            <li><a href="#"><span>优惠折扣</span></a><i></i></li>
+            <li><a href="#"><span>尖货发售</span></a><i></i></li>
+            <li><a href="#"><span>店铺分布</span></a><i></i></li>
+        </ul>
+    </div>
+<!-- list-collection -->
+    <div class="list-collection">
+        <div class="col-title">
+            <h1>男的 / 748件商品 </h1>
+        </div>
+        <div class="list-all">
+            <div class="list-left">
+                <div class="filter-category">
+                    <div class="filter-top">
+                        <span>筛选</span>
+                    </div>
+                </div>
+                <dl><dt>系列</dt></dl>
+                <dl><dd>季节</dd></dl>
+                <dl><dd>儿童</dd></dl>
+                <dl><dd>产品分类</dd></dl>
+                <dl><dd>价格</dd></dl>
+            </div>
+            <div class="list-right">
+                <div class="list-sort">
+                    <div class="sort-title">排序</div>
+                    <a href="#">默认</a>
+                    <a href="#">价格</a>
+                    <a href="#">最喜欢</a>
+                    <a href="#">最畅销</a>
+                </div>
+                <dl>
+                    <dt><a href="shoespro.html"><img src="img/hot-list1.png" alt=""></a></dt>
+                    <dd><a href="#">【男女同款】Chuck 70</a></dd>
+                    <dd>¥569.00</dd>
+                    <dd>¥455.00</dd>
+                </dl>
+                <dl>
+                    <dt><a href="#"><img src="img/hot-list2.png" alt=""></a></dt>
+                    <dd><a href="#">【男女同款】Chuck 70</a></dd>
+                    <dd>¥569.00</dd>
+                    <dd>¥455.00</dd>
+                </dl>
+                <dl>
+                    <dt><a href="#"><img src="img/hot-list3.png" alt=""></a></dt>
+                    <dd><a href="#">【男女同款】Chuck 70</a></dd>
+                    <dd>¥569.00</dd>
+                    <dd>¥455.00</dd>
+                </dl>
+                <dl>
+                    <dt><a href="#"><img src="img/hot-list4.png" alt=""></a></dt>
+                    <dd><a href="#">【男女同款】Chuck 70</a></dd>
+                    <dd>¥569.00</dd>
+                    <dd>¥455.00</dd>
+                </dl>
+                <dl>
+                    <dt><a href="#"><img src="img/hot-list5.png" alt=""></a></dt>
+                    <dd><a href="#">【男女同款】Chuck 70</a></dd>
+                    <dd>¥569.00</dd>
+                    <dd>¥455.00</dd>
+                </dl>
+                <dl>
+                    <dt><a href="#"><img src="img/hot-list6.png" alt=""></a></dt>
+                    <dd><a href="#">【男女同款】Chuck 70</a></dd>
+                    <dd>¥569.00</dd>
+                    <dd>¥455.00</dd>
+                </dl>
+                <dl>
+                    <dt><a href="#"><img src="img/hot-list7.png" alt=""></a></dt>
+                    <dd><a href="#">【男女同款】Chuck 70</a></dd>
+                    <dd>¥569.00</dd>
+                    <dd>¥455.00</dd>
+                </dl>
+                <dl>
+                    <dt><a href="#"><img src="img/hot-list8.png" alt=""></a></dt>
+                    <dd><a href="#">【男女同款】Chuck 70</a></dd>
+                    <dd>¥569.00</dd>
+                    <dd>¥455.00</dd>
+                </dl>
+                <dl>
+                    <dt><a href="#"><img src="img/hot-list1.png" alt=""></a></dt>
+                    <dd><a href="#">【男女同款】Chuck 70</a></dd>
+                    <dd>¥569.00</dd>
+                    <dd>¥455.00</dd>
+                </dl>
+                <dl>
+                    <dt><a href="#"><img src="img/hot-list1.png" alt=""></a></dt>
+                    <dd><a href="#">【男女同款】Chuck 70</a></dd>
+                    <dd>¥569.00</dd>
+                    <dd>¥455.00</dd>
+                </dl>
+                <dl>
+                    <dt><a href="#"><img src="img/hot-list1.png" alt=""></a></dt>
+                    <dd><a href="#">【男女同款】Chuck 70</a></dd>
+                    <dd>¥569.00</dd>
+                    <dd>¥455.00</dd>
+                </dl>
+                <dl>
+                    <dt><a href="#"><img src="img/hot-list1.png" alt=""></a></dt>
+                    <dd><a href="#">【男女同款】Chuck 70</a></dd>
+                    <dd>¥569.00</dd>
+                    <dd>¥455.00</dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+<!-- footer -->
+<div class="footer">
+    <div class="footer-con">
+        <div class="footer-list">
+            <ul>
+                <li>
+                    <a href="#">关于我们&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                    <a href="#">帮助和购物指南&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                    <a href="#">隐私政策&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                    <a href="#">使用规则&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                </li>
+                <a href="index.html"><img src="img/logof.png" alt=""></a>
+                <p class="footer-bottom">@匡威体育用品（中国）有限公司 保留所有权利&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">沪ICP备11044134号-2</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#"><img src="img/police1.png" alt=""></a>&nbsp;<a href="#">沪公网安备 31011002001667号</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#"><img src="img/police2.png" alt=""></a>&nbsp;<a href="#">电子营业执照</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">公司证照</a> </p>
+            </ul>
+            <a href=""><img src="img/call.png" alt=""></a>
+        </div>
+    </div>
+</div>
+
+<script>
+     let cookie_str = $.cookie('carts') ? $.cookie('carts') : '';
+            let cookie_obj = $toObj(cookie_str);
+            let sum = 0;
+            for(let key in cookie_obj){
+                let good = cookie_obj[key];
+                console.log(good);
+                sum += good.num;
+                $('.cart_num').text(sum);
+            }
+</script>
+</body>
+</html>

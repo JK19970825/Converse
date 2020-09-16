@@ -1,0 +1,364 @@
+@import 'public';
+
+/* banner-slide */
+.demo{
+    width: 100%;
+    height: 593.2px;
+}
+.left-btn,.right-btn{
+    font-family: "宋体";opacity: .8;
+}
+
+// .banner-slide{
+//     width: 100%;
+//     height: 592px;
+//     background-color: black;
+//     img{
+//         width: 100%;
+//     }
+// }
+.slide-title{
+    text-align: center;
+    padding-top: 15px;
+    li{
+        border-top: 1px solid black;
+        display: inline;
+        cursor: pointer;
+    }
+}
+/* hot-products */
+.hot-products{
+    width: 1000px;
+    // height: 1069px;
+    margin: 35px auto;
+    overflow: hidden;
+    .hot-title{
+        width: 100%;
+        height: 30px;
+        margin: 20px auto;
+        color: #333;
+        text-align: center;
+        h1{
+            font-weight: 400;
+        }
+    }
+    .hot-class{
+        width: 100%;
+        height: 250px;
+    }
+}
+
+.hot-class-s{
+    width: 24%;
+    height: 230px;
+    padding-left: 1.33%;
+    float: left;
+    margin-top: 20px;
+}
+.hot-class-s:first-child{
+    padding-left: 0;
+}
+
+.hot-class .hot1{
+    width: 240px;
+    height: 200px;
+    display: inline-block;
+    img{
+        width: 200px;
+        height: 200px;
+        margin: 0 auto;
+        margin-left: 20px;
+    }
+}
+.hot-class .hot-class-s:first-child img{
+    margin-left: 23px;
+}
+.hot-class .hot-class-s:last-child img{
+    margin-left: 26px;
+}
+.hot-class-s a:first-child{
+    width: 240px;
+    height: 30px;
+    display: inline-block;
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+}
+.hot-class-s a:hover{
+    text-decoration: underline;
+}
+.hot-menu{
+    width: 1000px;
+    height: 20px;
+    margin-top: 20px;
+    border-top: 1px solid #b7b7b7;
+}
+.hot-list{
+    width: 1000px;
+    // height: 708px;
+    overflow: hidden;
+    .hot-list1{
+        width: 1000px;
+        height: 300px;
+        margin-top: 20px;
+        dl:hover{
+            border: 1px solid #b7b7b7;
+            transition-duration: 0.3s;
+        }
+        dl{
+            width: 245px;
+            height: 300px;
+            float: left;
+            margin-top: 10px;
+            dt{
+                width: 165px;
+                height: 180px;
+                margin: 0 auto;
+                padding-top: 10px;
+                text-align: center;
+                img{
+                    width: 165px;
+                    height: 165px;
+                }
+            }
+            dd:nth-of-type(1){
+                width: 250px;
+                height: 55px;
+                text-align: center;
+                margin-bottom: 5px;
+                a{
+                    display: inline-block;
+                    color: #333;
+                    font-size: 13px;
+                }
+            }
+            dd:nth-of-type(2){
+                width: 250px;
+                height: 17.6px;
+                text-align: center;
+                text-decoration: line-through;
+                font-size: 14px;
+            }
+            dd:nth-of-type(3){
+                @extend dd:nth-of-type(2);
+                text-decoration: none;
+                color: #F00;
+            }
+        }
+    }
+    .hoo{
+        border-top: 1px solid #b7b7b7;
+    }
+}
+.view-allbut{
+    width: 1000px;
+    height: 48px;
+    text-align: center;
+    margin-top: 20px;
+    a{
+        display: inline-block;
+        width: 420px;
+        height: 48px;
+        color: white;
+        background-color: black;
+        font-size: 16px;
+        vertical-align: middle;
+        line-height: 48px;
+    }
+}
+/* new-rec */
+.new-rec{
+    width: 1000px;
+    margin: 0 auto;
+}
+
+
+/* bottom */
+.bottom{
+    width: 100%;
+    height: 1450px;
+    overflow: hidden;
+    margin-top: 80px;
+    .street{
+        width: 1000px;
+        height: 40px;
+        background-color: #464646;
+        margin: 0 auto;
+        margin-top: 40px;
+        img{
+            width: 19px;
+            height: 19px;
+            margin-left: 20px;
+            vertical-align: middle;
+        }
+        span{
+            font-size: 18px;
+            color: white;
+            line-height: 40px;
+            vertical-align: middle;
+        }
+    }
+    .wincon{
+        width: 1000px;
+        height: 366px;
+        margin: 0 auto;
+        margin-top: 20px;
+        .tshirt{
+            width: 488px;
+            height: 366px;
+            float: left;
+        }
+        .shoes{
+            @extend .tshirt;
+            float: right;
+        }
+    }
+    .txtcon{
+        width: 1000px;
+        height: 58px;
+        margin: 0 auto;
+        .txt1{
+            display: inline-block;
+            width: 488px;
+            height: 58px;
+            font-size: 12px;
+            color: black;
+            font-weight: 0;
+            line-height: 58px;
+            h1:hover{
+                text-decoration: underline;
+            }
+        }
+        .txt2{
+            @extend .txt1;
+            float: right;
+        }
+    }
+    .but{
+        width: 1000px;
+        height: 66px;
+        margin: 0 auto;
+        .but1 {
+            width: 488px;
+            height: 66px;
+            display: inline-block;
+            input{
+                width: 200px;
+                height: 50px;
+                background-color: black;
+                margin-top: 8px;
+                color: white;
+                font-size: 17px;
+                border: none;
+                cursor: pointer;
+            }
+        }
+        .but2 {
+            @extend .but1;
+            float: right;
+        }
+    }
+.wincon2{
+    width: 1000px;
+    height: 240px;
+    margin: 0 auto;
+    margin-top: 20px;
+    display: flex;
+    .bot1 img{
+        float: left;
+    }
+    .bot2{
+        @extend .bot1;
+        margin-left: 20px;
+    }
+    .bot3 img{
+        @extend .bot1;
+        margin-left: 20px;
+    }
+}   
+.txtcon2{
+    width: 1000px;
+    height: 58px;
+    margin: 0 auto;
+    .txt1{
+        display: inline-block;
+        width: 320px;
+        height: 58px;
+        font-size: 11px;
+        color: black;
+        font-weight: 0;
+        line-height: 58px;
+        h1:hover{
+            text-decoration: underline;
+        }
+    }
+    .txt2{
+        @extend .txt1;
+        margin-left: 16px;
+    }
+    .txt3{
+        @extend .txt1;
+        margin-left: 14px;
+    }
+}
+.txtcon3{
+    width: 1000px;
+    height: 58px;
+    margin: 0 auto;
+    .txt1{
+        display: inline-block;
+        width: 320px;
+        height: 58px;
+        font-size: 18px;
+        color:#999;
+        font-weight: 0;
+        line-height: 30px;
+        span:hover{
+            text-decoration: underline;
+        }
+    }
+    .txt2{
+        @extend .txt1;
+        margin-left: 16px;
+    }
+    .txt3{
+        @extend .txt1;
+        margin-left: 14px;
+    }
+}
+    .bottom-attention{
+        width: 100%;
+        height: 280px;
+        background-color: #464646;
+        margin-top: 44px;
+        text-align: center;
+        color: white;
+        padding-top: 80px;
+        h1{
+            font-weight: 200;
+        }
+        p{
+            margin-top: 25px;
+        }
+    }
+}
+.bottom-attention a:nth-of-type(1){
+    display: inline-block;
+    width: 75px;
+    height: 75px;
+    background: url(../img/wechat.png) -75px 0px ;
+    margin-top: 40px;
+}
+.bottom-attention a:nth-of-type(1):hover{
+    background: url(../img/wechat.png) -150px 0px ;
+}
+.bottom-attention a:nth-of-type(2){
+    display: inline-block;
+    width: 75px;
+    height: 75px;
+    background: url(../img/wechat.png) -75px -75px ;
+    margin-left: 20px;
+}
+.bottom-attention a:nth-of-type(2):hover{
+    background: url(../img/wechat.png) -150px -75px ;
+}
